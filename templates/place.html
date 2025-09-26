@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block body %}
+
+<h1>{{ place.name_place }}</h1>
+<img src="{{ place.link_photo }}" width="400">
+<textarea readonly>{{ place.description }}</textarea>
+{% endblock %}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" type="image/x-icon">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/arti_main_style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/arti.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown ul {
+                display: none;
+                position: absolute;
+                background-color: rgb(167, 96, 42);
+                min-width: 160px;
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .dropdown li {
+                list-style: none;
+            }
+
+            .dropdown a {
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 1.2rem;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+            /* خلفية السحاب والصحراء */
+            body {
+                background: linear-gradient(to top, #f4e2d8, #cbe3f1);
+                overflow-x: hidden;
+                position: relative;
+            }
+
+            /* سحب متحركة */
+            .cloud {
+                position: absolute;
+                background: #fff;
+                border-radius: 50%;
+                opacity: 0.8;
+                animation: moveClouds 60s linear infinite;
+            }
+
+            .cloud::before,
+            .cloud::after {
+                content: '';
+                position: absolute;
+                background: #fff;
+                border-radius: 50%;
+            }
+
+            .cloud1 {
+                width: 120px;
+                height: 60px;
+                top: 100px;
+                left: -150px;
+            }
+
+            .cloud1::before {
+                width: 80px;
+                height: 80px;
+                top: -20px;
+                left: 20px;
+            }
+
+            .cloud1::after {
+                width: 100px;
+                height: 100px;
+                top: -30px;
+                left: 60px;
+            }
+
+            .cloud2 {
+                width: 150px;
+                height: 70px;
+                top: 200px;
+                left: -200px;
+                animation-duration: 90s;
+            }
+
+            .cloud2::before {
+                width: 100px;
+                height: 100px;
+                top: -20px;
+                left: 20px;
+            }
+
+            .cloud2::after {
+                width: 120px;
+                height: 120px;
+                top: -30px;
+                left: 60px;
+            }
+
+            .cloud3 {
+                width: 100px;
+                height: 50px;
+                top: 300px;
+                left: -100px;
+                animation-duration: 75s;
+            }
+
+            .cloud3::before {
+                width: 60px;
+                height: 60px;
+                top: -10px;
+                left: 15px;
+            }
+
+            .cloud3::after {
+                width: 80px;
+                height: 80px;
+                top: -20px;
+                left: 45px;
+            }
+
+            textarea {
+                width: 100%;
+                height: 200px;
+                padding: 10px;
+                border: 1px solid #6f4444;
+                border-radius: 5px;
+                resize: none;
+                font-family: Arial, sans-serif;
+            }
+
+            @keyframes moveClouds {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(200vw);
+                }
+            }
+        </style>
+        <title>Arab online</title>
+    </head>
+
+    <body>
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+
+        <header>
+            <h1 class="logo"><a href="/"><img src="{{ url_for('static', filename='img/logo2.png') }}" alt="logo"></a>
+            </h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/info">Information</a></li>
+                    <li><a href="/map">Interactive map</a></li>
+                    <li class="dropdown">
+                        <a>Booking <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="/booking_hotel">Booking hotel</a></li>
+                            <li><a href="/booking_flight">Booking flight</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/chatbot">Chatbot</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+    {% block body %}
+    <h1>{{ place.name_place }}</h1>
+<img src="{{ url_for('static', filename='uploads/' ~ place.link_photo) }}" alt="{{ place.name_place }}" width="300">
+    
+    <textarea readonly class="desc-box">{{ place.description }}</textarea>
+    <p>{{ place.link_photo }}</p>
+    {% endblock %}
+
+        </section>
+
+        <script>
+            //dropdown menu
+            document.querySelector('.dropdown').addEventListener('click', function () {
+                this.classList.toggle('active');
+                const dropdownMenu = this.querySelector('ul');
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', function (event) {
+                const dropdown = document.querySelector('.dropdown');
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove('active');
+                    const dropdownMenu = dropdown.querySelector('ul');
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+        </script>
+    </body>
+
+</html>
