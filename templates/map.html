@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" type="image/x-icon">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arab online | Map</title>
+
+        <style>
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #ffffff;
+            }
+
+            #globeViz {
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1 class="logo">
+                <a href="/"><img src="{{ url_for('static', filename='img/logo2.png') }}" alt="logo"></a>
+            </h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/info">Information</a></li>
+                    <li><a href="/map">Interactive map</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);">Booking <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="/booking_hotel">Booking hotel</a></li>
+                            <li><a href="/booking_flight">Booking flight</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/chatbot">Chatbot</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="globeViz"></div>
+
+        <!-- Required libraries -->
+        <script src="https://unpkg.com/three@0.150.0/build/three.min.js"></script>
+        <script src="https://unpkg.com/globe.gl"></script>
+
+        <script>
+            // Data from Flask
+            const landmarks = {{ landmarks | tojson | safe }};
+
+            console.log("📍 Dynamic landmarks from Firebase:");
+            console.table(landmarks);
+
+            // Create globe
+            const world = Globe()(document.getElementById('globeViz'))
+                .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg')
+                .pointsData(landmarks)
+                .pointAltitude(0.01)
+                .pointRadius('size')
+                .pointLabel('name_place')
+                .pointColor(() => 'red')
+                .onPointClick(d => window.open( d.url, '_blank'));
+
+            // Dropdown menu toggle
+            document.querySelector('.dropdown')?.addEventListener('click', function (e) {
+                e.stopPropagation(); // Prevents click from bubbling up
+                this.classList.toggle('active');
+                const dropdownMenu = this.querySelector('ul');
+                if (dropdownMenu) {
+                    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+
+            // Close dropdown on outside click
+            document.addEventListener('click', function (event) {
+                const dropdown = document.querySelector('.dropdown');
+                if (dropdown && !dropdown.contains(event.target)) {
+                    dropdown.classList.remove('active');
+                    const dropdownMenu = dropdown.querySelector('ul');
+                    if (dropdownMenu) {
+                        dropdownMenu.style.display = 'none';
+                    }
+                }
+            });
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" type="image/x-icon">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arab online</title>
+
+        <style>
+                   </style>
+
+    <body>
+        
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <!-- خلفية زخرفية -->
+        <div class="shape circle"></div>
+        <div class="shape square"></div>
+        <!-- صحراء متحركة في الأسفل -->
+        <div class="desert"></div>
+
+        <!-- طبقة الرمال المتحركة -->
+       
+        <!-- زخارف تراثية -->
+        <div class="arabic-decor moon"></div>
+
+        <header>
+            
+                <h1 class="logo">
+                    <a href="#"><img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo" /></a>
+                </h1>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="nav" id="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="/info">Information</a></li>
+                        <li><a href="/map">Interactive map</a></li>
+                        <li class="dropdown">
+                            <a >Booking <i class="fa-solid fa-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="/booking_hotel">Booking hotel</a></li>
+                                <li><a href="/booking_flight">Booking flight</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/chatbot">Chatbot</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            
+        </header>
+        
+        <script>
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const dropdown = document.querySelector('.dropdown');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('open');
+            });
+
+            dropdown.addEventListener('click', function (event) {
+                event.stopPropagation();
+                this.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        </script>
+
+        <section>
+            <div class="container">
+                <h1 class="welcome"><img src="{{ url_for('static', filename='img/logo.png') }}" alt=""></h1>
+                <div class="concept">
+                    <h1>
+                        <span class="hover">W</span>
+                        <span class="hover">E</span>
+                        <span class="hover">L</span>
+                        <span class="hover">C</span>
+                        <span class="hover">O</span>
+                        <span class="hover">M</span>
+                        <span class="hover">E</span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="content" id="contact">
+            <h2 class="title">Contact</h2>
+            <div class="wrap animate pop">
+                <div class="overlay">
+                    <div class="overlay-content animate slide-left delay-2">
+                        <h1 class="animate slide-left pop delay-4 pulse" style="color: #fff; font-size:2.3rem;" >Contact</h1>
+                        <p class="animate slide-left pop delay-5" style="color: white; margin-bottom: 2.5rem;">Let's get
+                            in touch!
+                        </p>
+                    </div>
+                    <div class="image-content animate slide delay-5"></div>
+
+                    <div class="dots animate">
+                        <div class="dot animate slide-up delay-6"></div>
+                        <div class="dot animate slide-up delay-7"></div>
+                        <div class="dot animate slide-up delay-8"></div>
+                    </div>
+                </div>
+                <div class="text">
+                    <a href="mailto:memo.ahmed1205@gmail.com">
+                        <div class="card animate slide-up delay-6" style="margin-bottom: 2rem; cursor: pointer;">
+                            <div class="icon hover-spin"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="info">
+                                <h3 class="pulse">Email</h3>
+                                <p><a href="mailto:memo.ahmed1205@gmail.com">memo.ahmed1205@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tel:+201067143404">
+                        <div class="card animate slide-up delay-7" style="cursor: pointer;">
+                            <div class="icon hover-spin"><i class="fa-solid fa-phone"></i></div>
+                            <div class="info">
+                                <h3 class="pulse">Phone Number</h3>
+                                <p><strong><span class="Egypt">Egypt</span></strong> <a
+                                        href="tel:+201067143404">(+201067143404)</a>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/201067143404" target="_blank">
+                        <div class="card animate slide-up delay-8" style="margin-top: 2rem; cursor: pointer;">
+                            <div class="icon hover-spin"><i class="fa-brands fa-whatsapp"></i></div>
+                            <div class="info">
+                                <h3 class="pulse">WhatsApp</h3>
+                                <p><a href="https://wa.me/201067143404">Chat on WhatsApp</a></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <style>
+                      </style>
+
+        </section>
+
+        <script>
+            // Dropdown menu
+            document.querySelector('.dropdown').addEventListener('click', function () {
+                this.classList.toggle('active');
+            });
+
+            // إغلاق القائمة عند النقر بالخارج
+            document.addEventListener('click', function (event) {
+                const dropdown = document.querySelector('.dropdown');
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+            // Reveal cards on scroll
+            function revealOnScroll() {
+                const cards = document.querySelectorAll('.card');
+                const windowHeight = window.innerHeight;
+
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    if (cardTop < windowHeight - 100) {
+                        card.classList.add('reveal');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', revealOnScroll);
+            window.addEventListener('load', revealOnScroll);
+
+            // Smooth scroll to contact section
+            document.querySelector('.nav-links a[href="#contact"]').addEventListener('click', function (event) {
+                event.preventDefault();
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        </script>
+        <script>
+            const sandstorm = document.querySelector('.sandstorm');
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const pageHeight = document.body.scrollHeight;
+
+                // عند اقتراب المستخدم من أسفل الصفحة (الصحراء)
+                if (scrollY + windowHeight >= pageHeight - 200) {
+                    sandstorm.style.opacity = '0.3';
+                } else {
+                    sandstorm.style.opacity = '0';
+                }
+            })
+                            //dropdown menu
+                                document.querySelector('.dropdown').addEventListener('click', function () {
+                                    this.classList.toggle('active');
+                                    const dropdownMenu = this.querySelector('ul');
+                                    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+                                });
+                                // Close dropdown if clicked outside
+                                document.addEventListener('click', function (event) {
+                                    const dropdown = document.querySelector('.dropdown');
+                                    if (!dropdown.contains(event.target)) {
+                                        dropdown.classList.remove('active');
+                                        const dropdownMenu = dropdown.querySelector('ul');
+                                        dropdownMenu.style.display = 'none';
+                                    }
+                                });
+            </script>
+
+
+    </body>
+
+</html>

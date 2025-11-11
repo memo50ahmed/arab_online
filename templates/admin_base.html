@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit Place</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f4f4;
+                padding: 40px;
+            }
+
+            .container {
+                background-color: #fff;
+                max-width: 600px;
+                margin: auto;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-top: 15px;
+                color: #444;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            textarea,
+            select {
+                width: 100%;
+                padding: 10px;
+                margin-top: 6px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 16px;
+                background-color: #fafafa;
+            }
+
+            textarea {
+                resize: vertical;
+            }
+
+            img {
+                display: block;
+                max-width: 100%;
+                max-height: 300px;
+                border-radius: 8px;
+                margin: 10px auto 20px;
+            }
+
+            button {
+                margin-top: 20px;
+                width: 100%;
+                padding: 12px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h2>Edit: {{ place.name_place }}</h2>
+            <form method="POST" action="{{ url_for('update_place', place_id=place.id) }}" enctype="multipart/form-data">
+
+                <img src="{{ place.link_photo }}" alt="Preview">
+
+                <label>Name:</label>
+                <input type="text" name="name_place" value="{{ place.name_place }}" required>
+
+                <label>Description:</label>
+                <textarea name="description" rows="4" required>{{ place.description }}</textarea>
+
+                <label>Img URL Flag:</label>
+                <input type="text" name="flag" value="{{ place.flag if place.flag else '' }}"
+                    placeholder="Enter flag image URL" required>
+
+                <label>Image (optional):</label>
+                <input type="text" name="link_photo" placeholder="Enter new image URL to update"
+                    value="{{ place.link_photo }}">
+
+                <label>Name Country:</label>
+                <select name="name_country" required>
+                    <option value="{{ place.name_country }}" selected>{{ place.name_country }}</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Lebanon">Lebanon</option>
+                    <option value="Iraq">Iraq</option>
+                    <option value="Syria">Syria</option>
+                    <option value="Kuwait">Kuwait</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Oman">Oman</option>
+                    <option value="Yemen">Yemen</option>
+                    <option value="Palestine">Palestine</option>
+                    <option value="Morocco">Morocco</option>
+                    <option value="Algeria">Algeria</option>
+                    <option value="Tunisia">Tunisia</option>
+                    <option value="Libya">Libya</option>
+                    <option value="Sudan">Sudan</option>
+                    <option value="Mauritania">Mauritania</option>
+                    <option value="Comoros">Comoros</option>
+                    <option value="Djibouti">Djibouti</option>
+                    <option value="Somalia">Somalia</option>
+                </select>
+
+                <label>Latitude:</label>
+                <input type="number" step="any" name="lat" value="{{ place.lat }}" required>
+
+                <label>Longitude:</label>
+                <input type="number" step="any" name="lng" value="{{ place.lng }}" required>
+
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </body>
+
+</html>

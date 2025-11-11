@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Add New Place</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                padding: 30px;
+            }
+
+            .form-container {
+                max-width: 600px;
+                background: white;
+                margin: auto;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #ccc;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            label {
+                display: block;
+                margin: 10px 0 5px;
+                font-weight: bold;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                background: #ffffff84;
+                border: 1px solid #6f4444;
+                border-radius: 5px;
+                font-family: Arial, sans-serif;
+                margin-bottom: 15px;
+            }
+
+            textarea {
+                height: 200px;
+                resize: none;
+            }
+
+            button {
+                background: #28a745;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                width: 100%;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background: #218838;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="form-container">
+            <h2>Add New Place</h2>
+            <!-- مهم عشان رفع الصور -->
+            <form method="POST" enctype="multipart/form-data">
+                <label>Upload Image:</label>
+                <input type="text" name="image_url" placeholder="Enter image URL" required>
+
+                <!--  img country url -->
+                  <label for=""> Img url  flag</label>
+                <input type="text" name="flag" placeholder="Enter flag image URL" required>
+                <label>Country Name:</label>
+                <select name="name_country" required>
+                    <option value="" disabled selected>Select a country</option>
+                    <!-- 22 arab countries -->
+        
+                <option value="Egypt" >Egypt</option>
+                <option value="Saudi Arabia" data-flag="data:image/png;base64,BASE64_SAUDI_ARABIA">Saudi Arabia</option>
+                <option value="United Arab Emirates" data-flag="data:image/png;base64,BASE64_UAE">United Arab Emirates</option>
+                <option value="Jordan" data-flag="data:image/png;base64,BASE64_JORDAN">Jordan</option>
+                <option value="Lebanon" data-flag="data:image/png;base64,BASE64_LEBANON">Lebanon</option>
+                <option value="Iraq" data-flag="data:image/png;base64,BASE64_IRAQ">Iraq</option>
+                <option value="Syria" data-flag="data:image/png;base64,BASE64_SYRIA">Syria</option>
+                <option value="Kuwait" data-flag="data:image/png;base64,BASE64_KUWAIT">Kuwait</option>
+                <option value="Bahrain" data-flag="data:image/png;base64,BASE64_BAHRAIN">Bahrain</option>
+                <option value="Qatar" data-flag="data:image/png;base64,BASE64_QATAR">Qatar</option>
+                <option value="Oman" data-flag="data:image/png;base64,BASE64_OMAN">Oman</option>
+                <option value="Yemen" data-flag="data:image/png;base64,BASE64_YEMEN">Yemen</option>
+                <option value="Palestine" data-flag="data:image/png;base64,BASE64_PALESTINE">Palestine</option>
+                <option value="Morocco" data-flag="data:image/png;base64,BASE64_MOROCCO">Morocco</option>
+                <option value="Algeria" data-flag="data:image/png;base64,BASE64_ALGERIA">Algeria</option>
+                <option value="Tunisia" data-flag="data:image/png;base64,BASE64_TUNISIA">Tunisia</option>
+                <option value="Libya" data-flag="data:image/png;base64,BASE64_LIBYA">Libya</option>
+                <option value="Sudan" data-flag="data:image/png;base64,BASE64_SUDAN">Sudan</option>
+                <option value="Mauritania" data-flag="data:image/png;base64,BASE64_MAURITANIA">Mauritania</option>
+                <option value="Comoros" data-flag="data:image/png;base64,BASE64_COMOROS">Comoros</option>
+                <option value="Djibouti" data-flag="data:image/png;base64,BASE64_DJIBOUTI">Djibouti</option>
+                <option value="Somalia" data-flag="data:image/png;base64,BASE64_SOMALIA">Somalia</option>
+            </select>
+
+                    
+              
+                <label>Place Name:</label>
+                <input type="text" name="name_place" placeholder="Enter place name" required>
+
+                <label>Latitude:</label>
+                <input type="number" name="lat" step="any" min="-90" max="90" placeholder="Enter latitude" required>
+
+                <label>Longitude:</label>
+                <input type="number" name="lng" step="any" min="-180" max="180" placeholder="Enter longitude" required>
+
+                <label>Description:</label>
+                <textarea name="description" rows="5" placeholder="Enter description" required></textarea>
+
+                <button type="submit">Add Place</button>
+            </form>
+        </div>
+    </body>
+
+</html>
